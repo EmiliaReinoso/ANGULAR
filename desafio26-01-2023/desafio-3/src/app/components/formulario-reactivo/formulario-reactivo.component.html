@@ -1,15 +1,20 @@
-<form>
+<form [formGroup]="formularioLogin" (ngSubmit)="login()" class="was-validated">
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <label for="exampleInputEmail1" class="form-label">Correo</label>
+      <input formControlName="correo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div class="valid-feedback" *ngIf="formularioLogin.controls['correo'].dirty && *ngIf="formularioLogin.controls['correo'].valid">Campo válido</div>
+      <div class="invalid-feedback" *ngIf="formularioLogin.controls['correo'].dirty && *ngIf="formularioLogin.controls['correo'].errors?.['required']">El campo no puede estar vacio</div>
+      
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
+      <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+      <input formControlName="contrasena" type="password" class="form-control" id="exampleInputPassword1">
+      <div class="valid-feedback" *ngIf="formularioLogin.controls['contrasena'].dirty && *ngIf="formularioLogin.controls['contrasena'].valid">Campo válido</div>
+      <div class="invalid-feedback" *ngIf="formularioLogin.controls['contrasena'].dirty && *ngIf="formularioLogin.controls['contrasena'].errors?.['required']">El campo no puede estar vacio</div>
     </div>
     <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      <input formControlName="recordarCredenciales" type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Recordar credenciales</label>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

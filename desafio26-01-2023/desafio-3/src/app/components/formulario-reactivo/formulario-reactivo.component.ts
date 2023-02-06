@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-reactivo',
@@ -6,5 +7,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./formulario-reactivo.component.css']
 })
 export class FormularioReactivoComponent {
+  formularioLogin: FormGroup;
 
+  constructor(){
+    let regexCorreo: string = '^[a-z]+@[a-z]+\\.[a-z]{2,3}$';
+    let controles: any = {
+      correo: new FormControl('emilia.reinoso@gmail.com',[Validators.required, Validators.pattern(regexCorreo)]),
+      contrasena: new FormControl('12345678',[Validators.required, Validators.minLength(8)]),
+      recordarCredenciales: new FormControl(true) 
+    }
+    this.formularioLogin = new FormGroup(controles);
+  }
+  
+  login(){
+    console.log(this.formularioLogin);
+    if(this.formularioLogin.controls['correo'].errors?.['pattern']) {
+      console.log("Hubo un error en el correo");
+    }
+    if(this.formularioLogin.controls['correo'].errors?.['required']) {
+      console.log("El correo es obligatorio");
+    }
+  }
 }
+

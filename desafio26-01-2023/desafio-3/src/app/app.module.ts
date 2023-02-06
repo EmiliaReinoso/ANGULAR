@@ -14,7 +14,8 @@ import { FormularioReactivoComponent } from './components/formulario-reactivo/fo
     FormularioReactivoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormularioReactivoComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
